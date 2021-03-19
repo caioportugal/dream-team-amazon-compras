@@ -21,7 +21,7 @@ namespace Amazon.Compras.Application.Services
             {
                 Sucesso = false
             };
-            var regexCep = new Regex(@"^([0-9]){8}$|^(([0-9]){5}(-)([0-9]){3})$");
+            var regexCep = new Regex(@"^(\d{8})$|^(\d{5})(-){1}(\d{3})$");
             if (!regexCep.IsMatch(cep))
             {
                 freteViewModel.MensagemErro = $"CEP {cep} inválido.";
