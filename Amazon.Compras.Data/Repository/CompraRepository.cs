@@ -16,5 +16,10 @@ namespace Amazon.Compras.Data.Repository
         {
             return await _context.Compra.Include(c => c.CompraProduto).FirstOrDefaultAsync(c => c.Id == id);
         }
+
+        public async Task<bool> ExisteCompraComID(int id)
+        {
+            return await _context.Compra.AnyAsync(x => x.Id == id);
+        }
     }
 }

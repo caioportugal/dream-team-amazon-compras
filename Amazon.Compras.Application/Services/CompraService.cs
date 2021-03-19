@@ -8,11 +8,11 @@ using Amazon.Core.DomainObjects.DTO;
 
 namespace Amazon.Compras.Application.Services
 {
-    public class CompraServices : ICompraService
+    public class CompraService : ICompraService
     {
         private ICompraRepository _compraRepository;
 
-        public CompraServices(ICompraRepository compraRepository)
+        public CompraService(ICompraRepository compraRepository)
         {
             _compraRepository = compraRepository;
         }

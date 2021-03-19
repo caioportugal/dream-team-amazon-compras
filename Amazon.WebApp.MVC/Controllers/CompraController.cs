@@ -10,9 +10,13 @@ namespace Amazon.WebApp.MVC.Controllers
     public class CompraController : Controller
     {
         private readonly ICompraService _compraService;
-        public CompraController(ICompraService compraService)
+        private readonly IFreteService _freteService;
+        public CompraController(ICompraService compraService,
+                                IFreteService freteService)
         {
             _compraService = compraService;
+            _freteService = freteService;
+
         }
 
         // GET api/compra/:id
@@ -38,7 +42,10 @@ namespace Amazon.WebApp.MVC.Controllers
         [HttpGet("{id}/frete/{cep}")]
         public async Task<IActionResult> CalcularFreteCompra(int id, string cep)
         {
-            return Ok("Frete Compra");
+            var calculoFrete = await _freteService.CalcularFreteAsync(id, cep);
+            if (calculoFrete.Sucesso)
+                return Ok(calculoFrete.ValorFrete);
+            return NotFound(calculoFrete.MensagemErro);
         }
     }
 }

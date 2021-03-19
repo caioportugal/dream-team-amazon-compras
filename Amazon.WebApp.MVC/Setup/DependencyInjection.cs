@@ -15,7 +15,8 @@ namespace Amazon.WebApp.MVC.Setup
             services.AddScoped<ICompraRepository, CompraRepository>();
             services.AddScoped<IDesejoRepository, DesejoRepository>();
 
-            services.AddScoped<ICompraService, CompraServices>();
+            services.AddScoped<ICompraService, CompraService>();
+            services.AddScoped<IFreteService, FreteService>();
             services.AddScoped<AmazonCompraContext>();
 
             
