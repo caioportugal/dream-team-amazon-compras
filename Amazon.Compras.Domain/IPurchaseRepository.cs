@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace Amazon.Compras.Domain
 {
-    public interface ICompraRepository
+    public interface IPurchaseRepository
     {
-        Task<Compra> ObterDadosCompra(int idCompra);
+        Task<Compra> GetPurchaseData(int purchaseId);
         Task<bool> ExisteCompraComID(int id);
     }
 }

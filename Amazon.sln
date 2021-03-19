@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{944E6750-5922-4B9E-A3C7-B9EE63DA9EE7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Compras.Application", "Amazon.Compras.Application\Amazon.Compras.Application.csproj", "{2921E491-15CE-464A-821D-E167F463191D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Purchases.Application", "Amazon.Compras.Application\Amazon.Purchases.Application.csproj", "{2921E491-15CE-464A-821D-E167F463191D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Compras.Data", "Amazon.Compras.Data\Amazon.Compras.Data.csproj", "{A1EC572F-EFD5-438B-BBCF-B8084976BFF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Purchases.Data", "Amazon.Compras.Data\Amazon.Purchases.Data.csproj", "{A1EC572F-EFD5-438B-BBCF-B8084976BFF9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Compras.Domain", "Amazon.Compras.Domain\Amazon.Compras.Domain.csproj", "{A3E4EBA4-C328-4DBA-9DF4-8565104D423F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Purchases.Domain", "Amazon.Compras.Domain\Amazon.Purchases.Domain.csproj", "{A3E4EBA4-C328-4DBA-9DF4-8565104D423F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compras", "Compras", "{785671AC-44FF-4A9C-9A4E-0FC9389D2A3C}"
 EndProject
@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B01551AA-6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Core", "Amazon.Core\Amazon.Core.csproj", "{CC47784A-08F3-4C5A-8AEF-61B8FA16D4E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amazon.Compras.Business", "Amazon.Compras.Business\Amazon.Compras.Business.csproj", "{1757DA75-F854-4DF6-90F9-286C3A48A04C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amazon.Purchases.Business", "Amazon.Compras.Business\Amazon.Purchases.Business.csproj", "{1757DA75-F854-4DF6-90F9-286C3A48A04C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Amazon.Compras.Domain
 {
-    public interface IDesejoRepository
+    public interface IWishRepository
     {
-        void Adicionar(Desejos desejos);
+        void Add(Desejos wish);
     }
 }

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Amazon.Compras.Application.Services
 {
-    public interface IFreteService
+   public interface IPurchaseService
     {
-        Task<FreteViewModel> CalcularFreteAsync(int idCompra, string cep);
+        Task<PurchaseDataViewModel> GetPurchaseData(int purchaseId);
     }
 }

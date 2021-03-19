@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Amazon.Compras.Application.Queries.ViewModels
 {
-    public class DesejoItemViewModel
+    public class WhishItemsViewModel
     {
         public int Id { get; set; }
-        public int Quantidade { get; set; }
+        public int Quantity { get; set; }
     }
 }

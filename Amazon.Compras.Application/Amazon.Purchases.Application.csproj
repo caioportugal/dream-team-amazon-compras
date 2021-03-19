@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Amazon.Compras.Domain\Amazon.Compras.Domain.csproj" />
+    <ProjectReference Include="..\Amazon.Compras.Domain\Amazon.Purchases.Domain.csproj" />
     <ProjectReference Include="..\Amazon.Core\Amazon.Core.csproj" />
   </ItemGroup>
 

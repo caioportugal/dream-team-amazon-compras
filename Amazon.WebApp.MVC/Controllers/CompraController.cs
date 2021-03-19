@@ -9,43 +9,43 @@ namespace Amazon.WebApp.MVC.Controllers
     [ApiController]
     public class CompraController : Controller
     {
-        private readonly ICompraService _compraService;
-        private readonly IFreteService _freteService;
-        public CompraController(ICompraService compraService,
-                                IFreteService freteService)
+        private readonly IPurchaseService _purchaseService;
+        private readonly IShippingService _shippingService;
+        public CompraController(IPurchaseService purchaseService,
+                                IShippingService shippingService)
         {
-            _compraService = compraService;
-            _freteService = freteService;
+            _purchaseService = purchaseService;
+            _shippingService = shippingService;
 
         }
 
         // GET api/compra/:id
         [HttpGet("{id}")]
-        public async Task<IActionResult> ObterDadosCompra(int id)
+        public async Task<IActionResult> GetPurchaseData(int id)
         {
-            var dadosCompra = await _compraService.ObterDadosCompra(id);
+            var purchaseData = await _purchaseService.GetPurchaseData(id);
 
-            if (dadosCompra != null)
-                return Ok(dadosCompra);
+            if (purchaseData != null)
+                return Ok(purchaseData);
             return NotFound();
         }
 
         // POST api/compra/desejo
         [HttpPost]
         [Route("desejo")]
-        public async Task<IActionResult> AdicionarListaDesejo([FromBody] DesejosViewModel desejoViewModel)
+        public async Task<IActionResult> AddItemsInWishList([FromBody] WishesViewModel wishesViewModel)
         {
             return Ok("adicionado com sucesso");
         }
 
         // GET api/values
-        [HttpGet("{id}/frete/{cep}")]
-        public async Task<IActionResult> CalcularFreteCompra(int id, string cep)
+        [HttpGet("{id}/frete/{zipCode}")]
+        public async Task<IActionResult> CalculateShippingValue(int id, string zipCode)
         {
-            var calculoFrete = await _freteService.CalcularFreteAsync(id, cep);
-            if (calculoFrete.Sucesso)
-                return Ok(calculoFrete.ValorFrete);
-            return NotFound(calculoFrete.MensagemErro);
+            var shippingCalculation = await _shippingService.CalculateShipping(id, zipCode);
+            if (shippingCalculation.Success)
+                return Ok(shippingCalculation.ShippingValue);
+            return NotFound(shippingCalculation.ErrorMessage);
         }
     }
 }

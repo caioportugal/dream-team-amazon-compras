@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Amazon.Compras.Application\Amazon.Compras.Application.csproj" />
-    <ProjectReference Include="..\Amazon.Compras.Data\Amazon.Compras.Data.csproj" />
-    <ProjectReference Include="..\Amazon.Compras.Domain\Amazon.Compras.Domain.csproj" />
+    <ProjectReference Include="..\Amazon.Compras.Application\Amazon.Purchases.Application.csproj" />
+    <ProjectReference Include="..\Amazon.Compras.Data\Amazon.Purchases.Data.csproj" />
+    <ProjectReference Include="..\Amazon.Compras.Domain\Amazon.Purchases.Domain.csproj" />
     <ProjectReference Include="..\Amazon.Core\Amazon.Core.csproj" />
   </ItemGroup>
 

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Amazon.Compras.Application.Services
 {
-   public interface ICompraService
+    public interface IShippingService
     {
-        Task<DadosCompraViewModel> ObterDadosCompra(int idCompra);
+        Task<ShippingViewModel> CalculateShipping(int purchaseId, string zipCode);
     }
 }

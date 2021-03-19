@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Amazon.Compras.Data.Repository
 {
-    public class DesejoRepository : IDesejoRepository
+    public class WishRepository : IWishRepository
     {
         private readonly AmazonCompraContext _context;
-        public DesejoRepository(AmazonCompraContext context)
+        public WishRepository(AmazonCompraContext context)
         {
             _context = context;
         }
-        public void Adicionar(Desejos desejos)
+        public void Add(Desejos desejos)
         {
             _context.Desejos.Add(desejos);
             Commit();

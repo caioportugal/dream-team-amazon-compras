@@ -12,11 +12,11 @@ namespace Amazon.WebApp.MVC.Setup
         {
 
             // Compras
-            services.AddScoped<ICompraRepository, CompraRepository>();
-            services.AddScoped<IDesejoRepository, DesejoRepository>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<IWishRepository, WishRepository>();
 
-            services.AddScoped<ICompraService, CompraService>();
-            services.AddScoped<IFreteService, FreteService>();
+            services.AddScoped<IPurchaseService, PurchaseService>();
+            services.AddScoped<IShippingService, ShippingService>();
             services.AddScoped<AmazonCompraContext>();
 
             
