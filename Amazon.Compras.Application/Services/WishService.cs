@@ -17,24 +17,16 @@ namespace Amazon.Purchases.Application.Services
         }
 
         public async Task<bool> AddWish(WishesViewModel wishesViewModel)
-        {
-            try
-            {
-                var desejos = new Desejos();
-                desejos.ItemDesejo = WhishItemsViewModelToItemDesejo(wishesViewModel.WhishItems);
-                _wishRepository.Add(desejos);
-                return true;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+        {           
+            var desejos = new Desejos();
+            desejos.ItemDesejo = WhishItemsViewModelToItemDesejo(wishesViewModel.WhishItems);
+            _wishRepository.Add(desejos);
+            return true;            
         }
 
         private List<ItemDesejo> WhishItemsViewModelToItemDesejo(List<WhishItemsViewModel> whishItemsViewModel)
         {
             var listaDesejos = new List<ItemDesejo>();
-
             if (!AnyProductDoesntExists(whishItemsViewModel))
             {
                 // TODO

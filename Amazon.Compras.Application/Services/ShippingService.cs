@@ -21,7 +21,7 @@ namespace Amazon.Compras.Application.Services
             {
                 Success = false
             };
-            var regexZipCode = new Regex(@"^(\d{8})$|^(\d{5})(-){1}(\d{3})$");
+            var regexZipCode = new Regex(@"^\d{8})$|^\d{5}-{1}\d{3}$");
             if (!regexZipCode.IsMatch(zipCode))
             {
                 shippingViewModel.ErrorMessage = $"Zipcode {zipCode} invalid.";

@@ -11,7 +11,6 @@ namespace Amazon.WebApp.MVC.Setup
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-
             // Compras
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<IWishRepository, WishRepository>();

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
 namespace Amazon.WebApp.MVC
 {
@@ -33,7 +34,15 @@ namespace Amazon.WebApp.MVC
             {
                 options.UseSqlServer(Configuration.GetConnectionString("AmazonCompraDatabase"));
             });
-
+             services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Dream team purchase",
+                    Version = "v1"
+                });
+            });
             services.RegisterServices();
         }
 
@@ -49,6 +58,13 @@ namespace Amazon.WebApp.MVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                                 "v1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();
