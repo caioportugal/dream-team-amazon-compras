@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Amazon.Compras.Application.Queries.ViewModels;
 using Amazon.Compras.Application.Services;
+using Amazon.Purchases.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Amazon.WebApp.MVC.Controllers
@@ -11,11 +12,14 @@ namespace Amazon.WebApp.MVC.Controllers
     {
         private readonly IPurchaseService _purchaseService;
         private readonly IShippingService _shippingService;
+        private readonly IWishService _wishService;
         public CompraController(IPurchaseService purchaseService,
-                                IShippingService shippingService)
+                                IShippingService shippingService,
+                                IWishService wishService)
         {
             _purchaseService = purchaseService;
             _shippingService = shippingService;
+            _wishService = wishService;
 
         }
 
@@ -35,7 +39,10 @@ namespace Amazon.WebApp.MVC.Controllers
         [Route("desejo")]
         public async Task<IActionResult> AddItemsInWishList([FromBody] WishesViewModel wishesViewModel)
         {
-            return Ok("adicionado com sucesso");
+            var success = await _wishService.AddWish(wishesViewModel);
+            if (success)
+                return Ok(success);
+            return NotFound();
         }
 
         // GET api/values

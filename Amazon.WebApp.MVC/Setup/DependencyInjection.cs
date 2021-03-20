@@ -2,6 +2,7 @@
 using Amazon.Compras.Data;
 using Amazon.Compras.Data.Repository;
 using Amazon.Compras.Domain;
+using Amazon.Purchases.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Amazon.WebApp.MVC.Setup
@@ -17,9 +18,9 @@ namespace Amazon.WebApp.MVC.Setup
 
             services.AddScoped<IPurchaseService, PurchaseService>();
             services.AddScoped<IShippingService, ShippingService>();
-            services.AddScoped<AmazonCompraContext>();
+            services.AddScoped<IWishService, WishService>();
 
-            
+            services.AddScoped<AmazonCompraContext>();            
         }
     }
 }

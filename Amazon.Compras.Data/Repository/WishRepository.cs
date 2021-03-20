@@ -1,7 +1,4 @@
 ﻿using Amazon.Compras.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Amazon.Compras.Data.Repository
 {
