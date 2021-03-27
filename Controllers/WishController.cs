@@ -39,7 +39,7 @@ namespace Amazon.Purchases.Controllers
 
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public ActionResult<WishResponse> Get(int id)
         {
             try
