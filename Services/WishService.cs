@@ -73,11 +73,9 @@ namespace Amazon.Purchases.Services
             {
                 Id = wish.Id,
                 Product = new List<ProductResponse>()                
-            };
-            
+            };            
             foreach (var product in wish.WishItem)
             {
-                Console.WriteLine(product == null);                
                 wishResponse.Product.Add(_productService.GetProduct(product.ProductId));
             }
             return wishResponse;
