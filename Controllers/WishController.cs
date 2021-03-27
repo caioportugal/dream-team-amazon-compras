@@ -36,7 +36,6 @@ namespace Amazon.Purchases.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, new { e.Message, e.StackTrace });
             }
-
         }
 
         [HttpGet("{id}")]
@@ -57,9 +56,6 @@ namespace Amazon.Purchases.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, new { e.Message, e.StackTrace });
             }
-
-
-
         }
     }
 }
