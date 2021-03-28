@@ -31,9 +31,9 @@ namespace Amazon.Purchases.Controllers
                                       new { id = purchaseResponse.PurchaseId },
                                       purchaseResponse);
             }
-            catch (ProductNotFoundException pe)
+            catch (ItemNotFoundException pe)
             {
-                return StatusCode((int)HttpStatusCode.NotFound, pe.Message);
+                return NotFound(pe.Message);
             }
             catch (Exception e)
             {
@@ -52,9 +52,9 @@ namespace Amazon.Purchases.Controllers
                     return NotFound();
                 return Ok(purchaseData);
             }
-            catch (ProductNotFoundException pe)
+            catch (ItemNotFoundException pe)
             {
-                return StatusCode((int)HttpStatusCode.NotFound, pe.Message);
+                return NotFound(pe.Message);
             }
             catch (Exception e)
             {

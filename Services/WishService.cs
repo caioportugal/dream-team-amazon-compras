@@ -5,9 +5,7 @@ using Amazon.Purchases.Model;
 using Amazon.Purchases.Resources.Response;
 using Amazon.Purchases.Services.Interface;
 using Amazon.Purchases.ViewModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Amazon.Purchases.Services
 {
@@ -33,10 +31,22 @@ namespace Amazon.Purchases.Services
             return MapWish(wish);
         }
 
+        public WishResponse GetWish(int id)
+        {
+           var wish = new Wish();
+           using(var unitOfWork = new UnitOfWork(_context))
+           {
+                wish = unitOfWork.WishRepository.GetWish(id);
+           }
+            if (wish == null)
+                throw new ItemNotFoundException($"Wish {id} doesn't exist");
+           return MapWish(wish);
+        }
+
         private List<WishItem> WishItemsViewModelToWishtemItem(List<WishItemsRequest> wishItemRequest)
         {
             if (!AreAllProductsExists(wishItemRequest))
-                throw new ProductNotFoundException("All products must exists");
+                throw new ItemNotFoundException("All products must exists");
             var wishes = new List<WishItem>();
             foreach (var wish in wishItemRequest)
             {
@@ -56,15 +66,6 @@ namespace Amazon.Purchases.Services
                     return false;
             }
             return true;
-        }
-
-        public WishResponse GetWish(int id)
-        {
-           using(var unitOfWork = new UnitOfWork(_context))
-           {
-                return MapWish(unitOfWork.WishRepository.GetWish(id));
-           }
-           
         }
 
         private WishResponse MapWish(Wish wish)

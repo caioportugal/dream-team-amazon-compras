@@ -6,5 +6,6 @@ namespace Amazon.Purchases.Services
     {
         PurchaseResponse GetPurchaseData(int purchaseId);
         PurchaseResponse AddPurchase(PurchaseRequest purchase);
+        bool IsValidPurchase(int purchaseId);
     }
 }

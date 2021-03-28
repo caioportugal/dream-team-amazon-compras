@@ -24,13 +24,11 @@ namespace Amazon.Purchases.Controllers
             try
             {
                 var wishResponse = _wishService.AddWish(wishRequest);
-                if (wishResponse == null)
-                    return NotFound();
                 return CreatedAtAction(nameof(Get), new { id = wishResponse.Id }, wishResponse);
             }
-            catch (ProductNotFoundException pe)
+            catch (ItemNotFoundException pe)
             {
-                return StatusCode((int)HttpStatusCode.NotFound, pe.Message);
+                return NotFound(pe.Message);
             }
             catch (Exception e)
             {
@@ -44,13 +42,11 @@ namespace Amazon.Purchases.Controllers
             try
             {
                 var wish = _wishService.GetWish(id);
-                if (wish == null)
-                    return NotFound();
                 return Ok(wish);
             }
-            catch (ProductNotFoundException pe)
+            catch (ItemNotFoundException pe)
             {
-                return StatusCode((int)HttpStatusCode.NotFound, pe.Message);
+                return NotFound(pe.Message);
             }
             catch (Exception e)
             {

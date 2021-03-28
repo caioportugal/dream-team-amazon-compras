@@ -1,5 +1,6 @@
 ﻿using Amazon.Purchases.Database;
 using Amazon.Purchases.Database.UnitOfWork;
+using Amazon.Purchases.ErrorHandle;
 using Amazon.Purchases.Model;
 using Amazon.Purchases.Services.Interface;
 using Amazon.Purchases.ViewModel;
@@ -24,20 +25,25 @@ namespace Amazon.Purchases.Services
             {
                 PurchaseProduct = CreatePurchaseProduct(purchaseRequest.ProductId)
             };
-            using(var unitOfWork = new UnitOfWork(_context))
+            using (var unitOfWork = new UnitOfWork(_context))
             {
                 unitOfWork.PurchaseRepository.Add(purchase);
                 unitOfWork.Complete();
             }
             return MappingPurchaseReponse(purchase);
-        }        
+        }
 
         public PurchaseResponse GetPurchaseData(int purchaseId)
         {
+            var purchase = new Purchase();
             using (var unitOfWork = new UnitOfWork(_context))
             {
-                return MappingPurchaseReponse(unitOfWork.PurchaseRepository.GetPurchase(purchaseId));
-            }            
+                purchase = unitOfWork.PurchaseRepository.GetPurchase(purchaseId);
+
+            }
+            if (purchase == null)
+                throw new ItemNotFoundException($"Purchase {purchaseId} doesn't exist");
+            return MappingPurchaseReponse(purchase);
         }
 
         private List<ProductResponse> MappingProduct(List<PurchaseProduct> products)
@@ -55,13 +61,13 @@ namespace Amazon.Purchases.Services
         private ICollection<PurchaseProduct> CreatePurchaseProduct(List<int> ProductsId)
         {
             var purchaseProducts = new List<PurchaseProduct>();
-            foreach(var productId in ProductsId)
+            foreach (var productId in ProductsId)
             {
                 var productIntegration = _productService.GetProduct(productId);
                 purchaseProducts.Add(new PurchaseProduct()
                 {
                     ProductId = productId,
-                    ProductValue = (decimal)productIntegration.ProductValue,
+                    ProductValue = productIntegration.ProductValue,
                 });
             }
             return purchaseProducts;
@@ -78,6 +84,14 @@ namespace Amazon.Purchases.Services
             };
             purchaseReponse.TotalValue = purchaseReponse.Products.Sum(x => x.ProductValue);
             return purchaseReponse;
+        }
+
+        public bool IsValidPurchase(int purchaseId)
+        {
+            using (var unitOfWork = new UnitOfWork(_context))
+            {
+                return unitOfWork.PurchaseRepository.IsPurchaseExist(purchaseId);
+            }
         }
     }
 }

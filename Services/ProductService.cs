@@ -16,7 +16,7 @@ namespace Amazon.Purchases.Services
         {
             var productIntegration = _productIntegration.GetProduct(id);
             if (!_productIntegration.IsProductExist(productIntegration))
-                throw new ProductNotFoundException($"Product {id} doesn't exist");
+                throw new ItemNotFoundException($"Product {id} doesn't exist");
             return new ProductResponse()
             {
                 ProductName = productIntegration.Name,
