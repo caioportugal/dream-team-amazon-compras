@@ -1,16 +1,20 @@
-﻿namespace Amazon.Purchases.Integration
+﻿using Amazon.Purchases.Constants;
+using Newtonsoft.Json;
+using RestSharp;
+using System;
+
+namespace Amazon.Purchases.Integration
 {
     public class ProductIntegration : IProductIntegration
     {
         public Product GetProduct(int id)
         {
-            var product = new Product()
-            {
-                Id = 1,
-                Name = "Produto",
-                Value = 10
-            };
-            return product;
+            var client = new RestClient(Environment.GetEnvironmentVariable(EnvironmentVariable.ProductURL));
+            var request = new RestRequest($"product/{id}", DataFormat.Json);
+            var response = client.Get<Product>(request);
+            return (response.Content == null) ?
+                   null : 
+                   JsonConvert.DeserializeObject<Product>(response.Content);
         }
 
         public bool IsProductExist(int id) => IsProductExist(GetProduct(id));

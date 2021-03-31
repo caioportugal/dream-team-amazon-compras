@@ -11,7 +11,6 @@ namespace Amazon.Purchases.Database.Repository
         {
             get { return Context; }
         }
-
         public Wish GetWish(int id)
         {
             return PurchaseContext.Wish
