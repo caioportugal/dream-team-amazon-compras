@@ -10,8 +10,7 @@ namespace Amazon.Purchases.Integration
         public Product GetProduct(int id)
         {
             var client = new RestClient(Environment.GetEnvironmentVariable(EnvironmentVariable.ProductURL));
-            var url = Environment.GetEnvironmentVariable(EnvironmentVariable.ProductURL) + "product/" + id;
-            Console.WriteLine(url);
+
             var request = new RestRequest($"product/{id}", DataFormat.Json);
             var response = client.Get<Product>(request);
             return (response.Content == null) ?

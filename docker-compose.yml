@@ -4,8 +4,6 @@ networks:
       driver: bridge
 services:
     app:
-      extra_hosts:
-        - "host.docker.internal:${HOST_IP}"
       user: root
       container_name: apppurchase
       env_file: .env
