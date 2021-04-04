@@ -4,6 +4,8 @@ networks:
       driver: bridge
 services:
     app:
+      extra_hosts:
+        - "host.docker.internal:${HOST_IP}"
       user: root
       container_name: apppurchase
       env_file: .env
@@ -16,7 +18,7 @@ services:
         - database
       networks:
         - support
-      command: ["/bin/bash","wait-for-it.sh", "database:3306", "-t", "300", "--" ,"dotnet", "Amazon.Purchases.dll"]
+      command: ["/bin/bash","./wait-for-it.sh", "database:3306", "-t", "300", "--" ,"dotnet", "Amazon.Purchases.dll"]
     database:
       container_name: databasepurchase
       image: mysql:8.0
