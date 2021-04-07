@@ -2,6 +2,8 @@
 
 ## Running project local
 
+It's necessary to run Product-API to execute this project.
+
 Install docker and docker-compose 
 
 Create a .env file with the information below
@@ -33,4 +35,4 @@ after this start application run the command docker-compose up -d
 # Swagger documentation
 http://localhost:8081/swagger-ui.html
 
-It's necessary to run Product-API to execute this project.
+
