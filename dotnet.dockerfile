@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /app
 
 USER root
@@ -15,7 +15,3 @@ COPY --from=build /app/out .
 
 COPY wait-for-it.sh .
 RUN chmod +x wait-for-it.sh
-
-#RUN "ls"
-
-#ENTRYPOINT dotnet Amazon.Purchases.dll
